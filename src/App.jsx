@@ -4,7 +4,7 @@ import Scene from "./components/Scene";
 
 function App() {
   const creatingCanvasHandler = (state) =>{
-    state.gl.setClearColor('blue',1)
+
   }
   return (
     <Canvas 
@@ -26,7 +26,7 @@ function App() {
     >
       <Scene />
       <axesHelper />
-      <gridHelper args={[20,20, 'red', 'cyan']}/>
+      <gridHelper args={[20,20, 'red', 'gray']}/>
     </Canvas>
   )
 }

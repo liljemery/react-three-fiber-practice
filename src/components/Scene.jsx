@@ -1,15 +1,14 @@
 import { useFrame, extend, useThree, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
-
-import Bike from './Bike'
+import Dog from "./Dog";
 
 const Scene = (props) => {
     return (
         <>
         <ambientLight intensity={10}/>
         <OrbitControls/>
-        <Bike position-y={2}/>
+        < Dog />
         </>
     )
 }

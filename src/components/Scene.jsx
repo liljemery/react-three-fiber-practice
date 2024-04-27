@@ -2,6 +2,7 @@ import { useFrame, extend, useThree } from "@react-three/fiber"
 import { useRef } from "react"
 import * as THREE from 'three'
 import { OrbitControls } from "@react-three/drei";
+import CustomComp from "./CustomComp";
 extend({OrbitControls:OrbitControls});
 
 const Scene = (props) => {
@@ -25,6 +26,7 @@ const Scene = (props) => {
             <boxGeometry  />
             <meshBasicMaterial color={'orange'}/>
         </mesh>
+        <CustomComp/>
         </>
     )
 }

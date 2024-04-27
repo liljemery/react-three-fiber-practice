@@ -4,17 +4,9 @@ import { Perf } from "r3f-perf";
 
 function App() {
   return (
-    <Canvas 
-      camera={
-        {
-          fov:75,
-          near: 0.01,
-          far: 100,
-          position: [2,2,6],
-        }
-      }
-    >
+    <Canvas>
       <Scene />
+      <Perf position={'top-left'}/>
     </Canvas>
   )
 }

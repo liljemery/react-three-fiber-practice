@@ -4,7 +4,7 @@ import { Perf } from "r3f-perf";
 
 function App() {
   return (
-    <Canvas>
+    <Canvas shadows>
       <Scene />
       <Perf position={'top-left'}/>
     </Canvas>

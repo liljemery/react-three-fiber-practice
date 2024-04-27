@@ -21,7 +21,11 @@ const Scene = (props) => {
     return (
         <>
         <OrbitControls/>
-        <mesh ref={cubeRef} >
+        <mesh >
+            <boxGeometry  />
+            <meshBasicMaterial color={'orange'}/>
+        </mesh>
+        <mesh position-z={-10}>
             <boxGeometry  />
             <meshBasicMaterial color={'purple'}/>
         </mesh>

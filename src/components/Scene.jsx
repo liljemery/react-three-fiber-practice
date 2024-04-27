@@ -1,24 +1,15 @@
 import { useFrame, extend, useThree, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import Car from "./Model";
 import { Suspense } from "react";
 
-
+import Bike from './Bike'
 
 const Scene = (props) => {
     return (
         <>
-        <ambientLight intensity={8}/>
+        <ambientLight intensity={10}/>
         <OrbitControls/>
-        <Suspense 
-        fallback=
-        {
-            <mesh>
-                <boxGeometry/>
-                <meshBasicMaterial/>
-            </mesh>
-        }>  <Car/>            
-        </Suspense>
+        <Bike position-y={2}/>
         </>
     )
 }

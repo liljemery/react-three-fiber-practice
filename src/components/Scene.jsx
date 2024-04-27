@@ -25,10 +25,6 @@ const Scene = (props) => {
             <boxGeometry  />
             <meshBasicMaterial color={'orange'}/>
         </mesh>
-        <mesh position-z={-10}>
-            <boxGeometry  />
-            <meshBasicMaterial color={'purple'}/>
-        </mesh>
         </>
     )
 }

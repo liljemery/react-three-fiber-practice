@@ -26,6 +26,7 @@ function App() {
     >
       <Scene />
       <axesHelper />
+      <gridHelper args={[20,20, 'red', 'cyan']}/>
     </Canvas>
   )
 }

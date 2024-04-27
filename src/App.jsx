@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import Scene from "./components/Scene";
-
+import { Perf } from "r3f-perf";
 
 function App() {
   const creatingCanvasHandler = (state) =>{
@@ -27,6 +27,7 @@ function App() {
       <Scene />
       <axesHelper />
       <gridHelper args={[20,20, 'red', 'gray']}/>
+      <Perf position={'top-left'}/>
     </Canvas>
   )
 }

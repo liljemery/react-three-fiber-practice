@@ -38,6 +38,9 @@ const Scene = (props) => {
                 "-0.25":()=> CameraControlRef.current.zoom(-0.25 ,true),
             },
         }),
+        lookAtBox: button(()=>{
+            CameraControlRef.current.setLookAt(0,1,3,0,0,0,true)
+        })
     })
     
     return (

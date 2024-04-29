@@ -13,10 +13,7 @@ const OrbitControl = () => {
         maxPolarAngle={Math.PI / 4}
         minPolarAngle={-Math.PI / 4}
     />  
-    <mesh>
-        <boxGeometry/>
-        <meshBasicMaterial color={'purple'} />
-    </mesh>  
+
     </>
     
   )

@@ -4,6 +4,7 @@ import OrbitControl from "./OrbitControl";
 import PresentationControl from "./PresentationControl";
 import ScrollControl from "./ScrollControl";
 import TransformControl from "./TransformControl";
+import PivotControl from "./PivotControl";
 
 
 const Scene = (props) => {
@@ -16,7 +17,8 @@ const Scene = (props) => {
             {/* <OrbitControl/> */}
             {/* <PresentationControl/> */}
             {/* <ScrollControl /> */}
-            <TransformControl />
+            {/* <TransformControl /> */}
+            <PivotControl />
         </>
     )
 }

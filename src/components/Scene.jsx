@@ -1,35 +1,33 @@
-import { Grid, Text, OrbitControls,Text3D, Center, Float } from "@react-three/drei";
-
+import { OrbitControls, Html } from "@react-three/drei";
+import {useRef} from 'react'
 
 
 
 const Scene = (props) => {
+    const cubeRef = useRef()
+
     return (
         <>
             <OrbitControls/>
-            <Text 
-            fontSize={0.4}
-            font="./fonts/1.ttf"
-            position-y={1.5}
-            rotation-y={Math.PI * 0.1}
-            >
-                This is a text</Text>
-            <Center>
-            <Float>
-            <Text3D 
-                    font="./fonts/2.json" 
-                    height={1}
-                    size={1}
-                    letterSpacing={-0.1}
-                    bevelEnabled
-                    bevelSegments={20}
-                >
-                    Hello
-                    <meshNormalMaterial/>
-                </Text3D>  
-            </Float>
-            </Center>
-
+            <mesh position-x={1}>
+                <boxGeometry/>
+                <meshBasicMaterial color={'purple'}/>
+                <Html
+                    position={[0,0.8,0]}
+                    distanceFactor={5} 
+                    wrapperClass="text"
+                    occlude={cubeRef}
+                ><iframe 
+                    id="inlineFrameExample"
+                    title="Inline Frame Example"
+                    width="300"
+                    height="200"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"></iframe></Html>
+            </mesh>
+            <mesh position-x={-1} ref={cubeRef}>
+                <boxGeometry/>
+                <meshBasicMaterial color={'orange'}/>
+            </mesh>
         </>
     )
 }

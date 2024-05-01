@@ -21,3 +21,20 @@ h1 {
     margin: 0;
     padding: 0;
 }
+
+.text > div {
+    font-family:  sans-serif;
+    font-weight: 699;
+    position: absolute;
+    background-color: black;
+    color: white;
+    padding: 15px;
+    white-space: nowrap;
+    border-radius: 30px;
+    user-select: none;
+    transition: 1s;
+}
+.text > div:hover {
+    scale: 1.1;
+    transition: 1s;
+}

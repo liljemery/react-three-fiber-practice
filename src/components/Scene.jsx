@@ -1,24 +1,35 @@
-import { Grid } from "@react-three/drei";
-import CameraControl from "./CameraControl";
-import OrbitControl from "./OrbitControl";
-import PresentationControl from "./PresentationControl";
-import ScrollControl from "./ScrollControl";
-import TransformControl from "./TransformControl";
-import PivotControl from "./PivotControl";
+import { Grid, Text, OrbitControls,Text3D, Center, Float } from "@react-three/drei";
+
+
 
 
 const Scene = (props) => {
-
-
-
-    
     return (
         <>
-            {/* <OrbitControl/> */}
-            {/* <PresentationControl/> */}
-            {/* <ScrollControl /> */}
-            {/* <TransformControl /> */}
-            <PivotControl />
+            <OrbitControls/>
+            <Text 
+            fontSize={0.4}
+            font="./fonts/1.ttf"
+            position-y={1.5}
+            rotation-y={Math.PI * 0.1}
+            >
+                This is a text</Text>
+            <Center>
+            <Float>
+            <Text3D 
+                    font="./fonts/2.json" 
+                    height={1}
+                    size={1}
+                    letterSpacing={-0.1}
+                    bevelEnabled
+                    bevelSegments={20}
+                >
+                    Hello
+                    <meshNormalMaterial/>
+                </Text3D>  
+            </Float>
+            </Center>
+
         </>
     )
 }

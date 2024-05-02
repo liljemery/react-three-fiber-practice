@@ -1,57 +1,55 @@
-import { OrbitControls, MeshReflectorMaterial, Environment, MeshWobbleMaterial, MeshDistortMaterial, GradientTexture, useCursor } from "@react-three/drei";
-import {useState, useRef, useEffect} from 'react';
+import { OrbitControls, useGLTF, useTexture, MeshPortalMaterial, RoundedBox, Text, CameraControls } from "@react-three/drei";
 import * as THREE from 'three';
-import {useFrame} from '@react-three/fiber'
-
+import { useState } from 'react';
+import { easing } from "maath";
+import { useFrame } from "@react-three/fiber";
+import { useRef , useEffect} from "react";
 const Scene = (props) => {
-    const [hover, setHover] = useState(false);
-    const planeRef = useRef()
-    useCursor(hover);
-    const {lerp } = THREE.MathUtils;
-
-    useFrame(()=>{
-        planeRef.current.material.distort = lerp(
-            planeRef.current.material.distort, 
-            hover? 0.4 : 0 ,
-            hover? 0.05 : 0.01
-        );
-    });
+    const cameraRef = useRef()
+    const meshPortalMaterialRef = useRef();
+    const [active, setActive] = useState(false);
+    const model = useGLTF('./model/1.glb');
+    const textture = useTexture('./texture/1.png');
     
-    return (
-        <>
-            <OrbitControls/>
-            <ambientLight/>
-            
-            {/* <Environment background ground files={'./envMap/1.hdr'} /> */}
+    useFrame((_,delta)=>{
+        easing.damp(meshPortalMaterialRef.current,'blend', active? 1 : 0, 0.1, delta )
+    })
+    useEffect(() => {
+        if(active){
+            cameraRef.current.setLookAt(0,0,3,0,0,0,true)
+        }else{
+            cameraRef.current.setLookAt(0,0,5,0,0,0,true)
+        }
+    }, [active])
+    
 
-            {/* <mesh>
-                <boxGeometry args={[1,1,1,65,32,32]} />
-                <MeshWobbleMaterial color='#F76E53' factor={3} speed={0.4}/>
-            </mesh> */}
-            {/* <mesh rotation-x={- Math.PI * 0.5} position-y={-0.75}>
-                <planeGeometry args={[6,6]}/>
-                <MeshReflectorMaterial 
-                
-                    resolution={512} 
-                    color="gray" 
-                    blur={[1000,1000]}
-                    mixBlur={2}
-                    mirror={1}
-                    />
-            </mesh> */}
-            <mesh
-                ref={planeRef}
-                onPointerOver={()=>setHover(true)}
-                onPointerOut={()=>setHover(false)}
-            >
-                <planeGeometry args={[2,3,64,64]}/>
-                    <MeshDistortMaterial speed={1} distort={0.3}>
-                        <GradientTexture 
-                        colors={['cyan','white']}
-                        stops={[0,1]}
-                    />
-                </MeshDistortMaterial>
-            </mesh>
+    return (
+        <> 
+        <CameraControls ref={cameraRef} /> 
+        <RoundedBox 
+            args={[3,4,0.1]} 
+            radius={0.2}
+            onDoubleClick={()=>setActive(!active)}
+        >
+            <Text 
+                font="./fonts/Roboto-Bold.ttf" 
+                position={[-0.7, 1.6, 0.1]} 
+                fontSize={0.6} 
+                fontWeight={3}
+                color={'white'}
+                >
+                Eggs
+                <meshBasicMaterial/>
+            </Text>
+            <planeGeometry args={[3,4]}/>
+            <MeshPortalMaterial ref={meshPortalMaterialRef}>
+                <primitive object={model.scene} scale={0.6} position-y={0.6} />
+                <mesh>
+                    <sphereGeometry args={[3,64,64]}/>
+                    <meshBasicMaterial map={textture} side={THREE.BackSide}/> 
+                </mesh>                
+            </MeshPortalMaterial>
+        </RoundedBox>
         </>
     )
 }

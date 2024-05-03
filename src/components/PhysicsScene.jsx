@@ -1,9 +1,12 @@
-import { Physics, RigidBody, } from "@react-three/rapier";
+import { Physics, RigidBody } from "@react-three/rapier";
+import Effects from './Effects.jsx'
 
 const PhysicsScene = () => {
 
   return (
-    <Physics gravity={[0,-9.81,0]} debug>
+    <>
+    <Effects/>
+    <Physics gravity={[0,-9.81,0]}>
         <RigidBody wireframe>
             <mesh castShadow position={[0, 1.5, 0]}>
                 <boxGeometry />
@@ -23,7 +26,9 @@ const PhysicsScene = () => {
                 <meshStandardMaterial color="#C7CAC7" />
             </mesh>            
         </RigidBody>
-    </Physics>
+    </Physics>    
+    </>
+
   )
 }
 

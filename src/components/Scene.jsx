@@ -3,22 +3,30 @@ import { a, useSpring } from '@react-spring/three'
 import { useFrame } from '@react-three/fiber';
 
 const Scene = (props) => {
-    const [spring, api] = useSpring(()=>({
-        from: {x: 0},
-    }))
-    const handleClick = () =>{
-        api.start({
-            to: { x: spring.x.get() === 1 ? 0 : 1}
-        })
-    }
-    useFrame(()=>{
-        console.log()
+    let n = 0
+    const {x, y, color} = useSpring({
+        from: {color: 'hotpink', x: -2},
+        to: { color: 'yellow', x: 2},
+        // to: [
+        //     {color: 'yellow',x: 2,},
+        //     {color: 'cyan', y: 2},
+        //     {color: 'green', x: -2},
+        //     {color: 'hotpink', y: -2}
+        // ],
+        // loop: ()=>3 > n++, should return a boolean value
+        delay: 1000,
+        reverse: false,
+        pause: true,
+        // onStart when starts
+        // onResume when continued
+        // onRest when animation finished
+        // onPause when animation is paused
     })
     return (
         <> 
-            <a.mesh onClick={handleClick} position-x={spring.x}>
+            <a.mesh position-x={x} position-y={y}>
                 <boxGeometry/>
-                <a.meshBasicMaterial color={'orange'} />
+                <a.meshBasicMaterial color={color} />
             </a.mesh>
         </>
     )
